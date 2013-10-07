@@ -1,0 +1,10 @@
+<servlet>
+        <servlet-name>appEntry</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>appEntry</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>

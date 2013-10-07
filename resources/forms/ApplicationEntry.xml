@@ -1,0 +1,128 @@
+<applicationEntry name="lifeInsurance" type="singlePage">
+	<header>
+		<formName>
+			Gerber Term Insurance
+		</formName>
+		<description>
+			Application for Life Insurance.
+		</description>
+	</header>
+	<section name="Segment" label="Policy Information">
+		<field name="OptionCodeCT" label="Coverage" type="select" codeTableName="OPTIONCODE"/>
+		<field name="SegmentStatusCT" label="Status Change" type="select" codeTableName="STATUSCHANGE"/>
+		<field name="state" label="Issue State" type="select" codeTableName="state" mandatory="yes"/>
+		<field name="ApplicationReceivedDate" label="Received Date"  mandatory="yes" type="date"/>
+		<field name="ApplicationSignedDate" label="Signed Date" type="date"/>
+		<field name="IssueDate" label="You can leave a note here for the beloved user." type="note"/>
+		<field name="CreationDate" label="Creation Date" type="date"/>
+		<field name="EffectiveDate" label="Effective Date" type="date"/>
+		<field name="IssueDate" label="Issue Date" type="date"/>
+		<field name="TerminationDate" label="Termination Date" type="date"/>
+		<field name="RateSeriesDate" label="Rate Series Date" type="date"/>
+		<field name="Life.FaceAmount" label="Face Amount" type="amount"/>
+	</section>
+
+	<section name="ClientDetail" label="Client Information">
+		<field name="AmountOfInsurance" label="Amount Of Insurance" type="amount" />
+		<field name="FirstName" label="Customer First Name" type="text" mandatory="yes" praseValidation="yes"/>
+		<field name="LastName" label="Customer Last Name" type="text" mandatory="yes"/>
+		<field name="MiddleName" label="Middle intials" type="text"/>
+		<field name="DateOfBirth" label="Date Of Birth"  type="date" mandatory="yes"/>
+		<field name="address" label="Street Address" type="text" codeTableName="country" mandatory="no"/>
+		<field name="city" label="City" type="text" mandatory="no"/>
+		<field name="state" label="State" type="text" mandatory="no"/>
+		<field name="CountryTypeCT" label="Issue Country" type="select" codeTableName="country"/>
+	</section>
+
+	<section name="AgentDetail" label="Agent Information">
+		<field name="FirstName" label="First Name" type="text" mandatory="yes" />
+		<field name="LastName" label="Last Name" type="text" mandatory="yes"/>
+		<field name="MiddleName" label="Middle intials" type="text"/>
+		<field name="DateOfBirth" label="Date Of Birth"  type="date" mandatory="yes"/>
+		<field name="address" label="Street Address" type="text" codeTableName="country" mandatory="no"/>
+		<field name="city" label="City" type="text" mandatory="no"/>
+		<field name="state" label="State" type="text" mandatory="no"/>
+		<field name="CountryTypeCT" label="Issue Country" type="select" codeTableName="country"/>
+	</section>
+
+	<section name="Questionnaire" type="questionnaire" label="Application for Adult Term Life Insurance">
+		<field name="question1" 
+			label="In the past 12 months, have you smoked or used tobacco in any form?" 
+			type="question" answerType="codeTable" codeTableName="OPTIONCODE" hasChildren="yes" 
+			childFields="CIR:condition,datesAndDuration,doctorName,hospitalName,hospitalAddress~ADR:condition,hospitalName">
+			<field name="condition" label="Nature of Condition" type="text" />
+			<field name="datesAndDuration" label="Dates and Duration" type="text" />
+			<field name="doctorName" label="Name Of Doctor" type="text"/>
+			<field name="hospitalName" label="Name of Hospital" type="text"/>
+			<field name="hospitalAddress" label="Address of Hospital" type="text"/>	
+		</field>
+
+		<field name="question2" 
+			label="Within past 5 years, have you been convicted of a felony; had a driver's license suspended or revoked; been convicted of or plead
+	 				guilty  to 2 or more moving violations; or currently on probation or parole?" 
+			type="question" answerType="yes/no" hasChildren="yes" 
+			childFields="Yes:condition,datesAndDuration,doctorName,hospitalName,hospitalAddress~No:condition,hospitalName">
+			<field name="condition" label="Nature of Condition" type="text" />
+			<field name="datesAndDuration" label="Dates and Duration" type="text" />
+			<field name="doctorName" label="Name Of Doctor" type="text"/>
+			<field name="hospitalName" label="Name of Hospital" type="text"/>
+			<field name="hospitalAddress" label="Address of Hospital" type="text"/>				
+		</field>
+
+		<field name="question3" 
+			label="In the past 5 years, have you: been hospitalized or consulted with or examined or treated by any doctor or health facility 
+	 				(excluding normal pregnancy or childbirth)?" 
+			type="question" answerType="yes/no" hasChildren="yes" 
+			childFields="Yes:condition,datesAndDuration,doctorName,hospitalName,hospitalAddress~No:condition">
+			<field name="condition" label="Nature of Condition" type="text" />
+			<field name="datesAndDuration" label="Dates and Duration" type="text" />
+			<field name="doctorName" label="Name Of Doctor" type="text"/>
+			<field name="hospitalName" label="Name of Hospital" type="text"/>
+			<field name="hospitalAddress" label="Address of Hospital" type="text"/>				
+		</field>
+
+		<field name="question4" label="In the past 5 years, have you been advised by a physician to reduce the use of alcohol or 
+	 	to seek treatment for the use of alcohol or seek treatment for the use of drugs; or used any controlled substance except as prescribed by a physician?" 
+			type="question" answerType="yes/no" hasChildren="yes" childFields="Yes:condition,datesAndDuration,doctorName,hospitalName,hospitalAddress~No:condition,hospitalName">
+			<field name="condition" label="Nature of Condition" type="text" />
+			<field name="datesAndDuration" label="Dates and Duration" type="text" />
+			<field name="doctorName" label="Name Of Doctor" type="text"/>
+			<field name="hospitalName" label="Name of Hospital" type="text"/>
+			<field name="hospitalAddress" label="Address of Hospital" type="text"/>				
+		</field>
+		<field name="question5" label="Where do you live?" 
+			type="question" answerType="codeTable" codeTableName="COUNTRY" hasChildren="yes" 
+			childFields="Canada:condition,datesAndDuration,doctorName,hospitalName,hospitalAddress~USA:condition,hospitalName">
+			<field name="condition" label="Nature of Condition" type="text" />
+			<field name="datesAndDuration" label="Dates and Duration" type="text" />
+			<field name="doctorName" label="Name Of Doctor" type="text"/>
+			<field name="hospitalName" label="Name of Hospital" type="text"/>
+			<field name="hospitalAddress" label="Address of Hospital" type="text"/>				
+		</field>
+		<field name="question6" label="How much do you smoke?" 
+			type="question" answerType="yes/no" hasChildren="yes" 
+			childFields="Yes:noOfPacks,datesAndDuration,doctorName,hospitalName,hospitalAddress~No:condition,hospitalName">
+			<field name="noOfPacks" label="No Of Packs" type="text" />
+			<field name="datesAndDuration" label="Dates and Duration" type="text" />
+			<field name="doctorName" label="Name Of Doctor" type="text"/>
+			<field name="hospitalName" label="Name of Hospital" type="text"/>
+			<field name="hospitalAddress" label="Address of Hospital" type="text"/>				
+		</field>
+
+
+
+	</section>
+
+	<!-- <section name="ClientDetail1" label="Agent Information" type="addDynamicFields" button="Add Client">
+		<field name="FirstName" label="Customer First Name" type="text" mandatory="yes" dynamic="yes"/>
+		<field name="LastName" label="Customer Last Name" type="text" mandatory="yes"/>
+		<field name="MiddleName" label="Middle intials" type="text" mandatory="yes"/>
+		<field name="DateOfBirth" label="Date"  type="datepicker" mandatory="yes"/>
+		<field name="address" label="Street Address" type="text" codeTableName="country" mandatory="no"/>
+	</section> -->
+
+	<section name="agreement" label="Authorization To Obtain Information">
+		<field name="agreement" type="agreement" value="All statements and answers made in all parts of this application are true and complete to the best of my knowledge and belief, and shall be basis for and become part of any policy issued as result of this application."/>
+	</section>
+
+</applicationEntry>
